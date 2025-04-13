@@ -3,38 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prueba MT5 App</title>
+  <title>Prueba de botón</title>
 </head>
 <body>
-  <h2>Prueba conexión al servidor</h2>
+  <h2>¿El botón funciona?</h2>
 
-  <button onclick="enviarPrueba()">Enviar prueba POST</button>
+  <button onclick="document.getElementById('respuesta').textContent = '¡Botón tocado!'">
+    Tocar botón
+  </button>
 
   <p id="respuesta"></p>
-
-  <script>
-    async function enviarPrueba() {
-      const respuestaElemento = document.getElementById("respuesta");
-
-      try {
-        const res = await fetch("https://mt5-server.onrender.com/orden", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            simbolo: "EURUSD",
-            tipo: "buy",
-            volumen: 0.1
-          })
-        });
-
-        const data = await res.json();
-        respuestaElemento.textContent = "Respuesta del servidor: " + JSON.stringify(data);
-      } catch (error) {
-        respuestaElemento.textContent = "Error: " + error.message;
-      }
-    }
-  </script>
 </body>
 </html>
