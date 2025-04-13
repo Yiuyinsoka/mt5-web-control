@@ -13,28 +13,29 @@
   <p id="respuesta"></p>
 
   <script>
-    async function enviarPrueba() {
-      const respuestaElemento = document.getElementById("respuesta");
+  async function enviarPrueba() {
+    const respuestaElemento = document.getElementById("respuesta");
+    respuestaElemento.textContent = "Enviando orden...";
 
-      try {
-        const res = await fetch("https://mt5-server.onrender.com/orden", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            simbolo: "EURUSD",
-            tipo: "buy",
-            volumen: 0.1
-          })
-        });
+    try {
+      const res = await fetch("https://mt5-server.onrender.com/orden", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          simbolo: "EURUSD",
+          tipo: "buy",
+          volumen: 0.1
+        })
+      });
 
-        const data = await res.json();
-        respuestaElemento.textContent = "Respuesta del servidor: " + JSON.stringify(data);
-      } catch (error) {
-        respuestaElemento.textContent = "Error: " + error.message;
-      }
+      const data = await res.json();
+      respuestaElemento.textContent = "Respuesta del servidor: " + JSON.stringify(data);
+    } catch (error) {
+      respuestaElemento.textContent = "Error: " + error.message;
     }
-  </script>
+  }
+</script>
 </body>
 </html>
